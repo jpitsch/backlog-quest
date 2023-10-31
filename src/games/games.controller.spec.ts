@@ -14,7 +14,11 @@ describe('GamesController', () => {
     }).useMocker((token) => {
       const results = ['game1', 'game2'];
       if (token === GamesService) {
-        return { findAll: jest.fn().mockResolvedValue(results) };
+        return {
+          create: jest.fn().mockResolvedValue({}),
+          updateByName: jest.fn().mockResolvedValue({}),
+          findAll: jest.fn().mockResolvedValue(results),
+        };
       }
       if (typeof token === 'function') {
         const mockMetadata = moduleMocker.getMetadata(token) as MockFunctionMetadata<any, any>;

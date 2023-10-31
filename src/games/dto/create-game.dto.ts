@@ -14,30 +14,30 @@ export class CreateGameDto {
   @Field()
   readonly publisher: string;
 
-  @Field()
-  readonly boxImage: string;
+  @Field({ nullable: true })
+  readonly boxImage?: string;
 
   @Field({ nullable: true })
-  readonly metacriticScore: number;
+  readonly metacriticScore?: number;
 
   @Field({ nullable: true })
-  readonly storyOnly: number;
+  readonly storyOnly?: number;
 
   @Field({ nullable: true })
-  readonly storyPlus: number;
+  readonly storyPlus?: number;
 
   @Field({ nullable: true })
-  readonly fullCompletion: number;
+  readonly fullCompletion?: number;
 
   @Field({ nullable: true })
-  readonly steamAppId: number;
+  readonly steamAppId?: number;
 
   @Field({ nullable: true })
-  readonly playstationId: string;
+  readonly playstationId?: string;
 
   @Field({ nullable: true })
-  readonly nintendoId: string;
+  readonly nintendoId?: string;
 
   @Field({ nullable: true })
-  readonly xboxId: string;
+  readonly xboxId?: string;
 }
