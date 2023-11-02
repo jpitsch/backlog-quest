@@ -32,7 +32,7 @@ input CreateGameDto {
   genre: String!
   platform: String!
   publisher: String!
-  boxImage: String!
+  boxImage: String
   metacriticScore: Float
   storyOnly: Float
   storyPlus: Float
