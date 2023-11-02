@@ -5,6 +5,7 @@ import { GamesModule } from './games/games.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { BacklogModule } from './backlog/backlog.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
     }),
+    BacklogModule,
   ],
   controllers: [AppController],
   providers: [AppService],
