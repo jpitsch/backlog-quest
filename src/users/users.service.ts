@@ -1,23 +1,20 @@
 import { Injectable } from '@nestjs/common';
-
-export type User = any;
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { CreateUserDto } from './dto/create-user.dto';
+import { User } from './schemas/user.schema';
+import { encodePassword } from 'src/utils/bcrypt';
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'jason',
-      password: 'mypass'
-    },
-    {
-      userId: 2,
-      username: 'lian',
-      password: 'mypass1'
-    }
-  ]
+  constructor(@InjectModel(User.name) private readonly userModel: Model<User>) {}
+
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const password = await encodePassword(createUserDto.password);
+    return this.userModel.create({ ...createUserDto, password });
+  }
 
   async findOne(username: string): Promise<User | undefined> {
-    return this.users.find(user => user.username === username);
+    return this.userModel.findOne({ username: username}).exec();
   }
 }
