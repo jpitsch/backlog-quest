@@ -6,14 +6,11 @@ import { JwtService } from '@nestjs/jwt';
 
 describe('AuthController', () => {
   let controller: AuthController;
-  let authService: AuthService;
-  let authGuard: AuthGuard;
 
   const mockAuthService = {
     signIn: jest.fn().mockResolvedValue({}),
     signUp: jest.fn().mockResolvedValue({})
   };
-  const mockJwtService = {};
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
