@@ -9,8 +9,8 @@ import { Game } from './schemas/game.schema';
 export class GamesService {
   constructor(@InjectModel(Game.name) private readonly gameModel: Model<Game>) {}
 
-  async create(CreateGameDto: CreateGameDto): Promise<Game> {
-    const created = this.gameModel.create(CreateGameDto);
+  async create(createGameDto: CreateGameDto): Promise<Game> {
+    const created = this.gameModel.create(createGameDto);
     return created;
   }
 
