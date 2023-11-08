@@ -14,7 +14,7 @@ export class UsersService {
     return this.userModel.create({ ...createUserDto, password });
   }
 
-  async findOne(username: string): Promise<User | undefined> {
+  async findOneByUsername(username: string): Promise<User | undefined> {
     return this.userModel.findOne({ username: username}).exec();
   }
 }
