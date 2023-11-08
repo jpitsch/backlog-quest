@@ -26,4 +26,16 @@ describe('AuthService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  describe('signIn()', () => {
+    xit('will verify that username and password are valid and return a valid JWT', () => {
+      //TODO: Need to add passport so this may change.
+    });
+  });
+
+  describe('signUp()', () => {
+    xit('will call the users service to create a new user', () => {
+      //TODO: Need to add passport so this may change.
+    });
+  });
 });
