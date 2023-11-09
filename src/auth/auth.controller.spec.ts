@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
+import { LocalAuthGuard } from './local-auth.guard';
 import { JwtService } from '@nestjs/jwt';
 
 describe('AuthController', () => {
@@ -17,7 +17,7 @@ describe('AuthController', () => {
       controllers: [AuthController],
       providers: [
         { provide: AuthService, useValue: mockAuthService },
-        { provide: AuthGuard, useValue: jest.fn().mockImplementation(() => true )},
+        { provide: LocalAuthGuard, useValue: jest.fn().mockImplementation(() => true )},
         { provide: JwtService, useValue: jest.fn().mockImplementation(() => true )},
       ]
     })

@@ -27,7 +27,7 @@ describe('AuthService', () => {
     expect(service).toBeDefined();
   });
 
-  describe('signIn()', () => {
+  describe('validateUser()', () => {
     xit('will verify that username and password are valid and return a valid JWT', () => {
       //TODO: Need to add passport so this may change.
     });
