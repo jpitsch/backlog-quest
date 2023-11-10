@@ -10,8 +10,12 @@ export class UsersService {
   constructor(@InjectModel(User.name) private readonly userModel: Model<User>) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const password = await encodePassword(createUserDto.password);
-    return this.userModel.create({ ...createUserDto, password });
+    if(createUserDto.password === createUserDto.passwordConfirm) {
+      const password = await encodePassword(createUserDto.password);
+      return this.userModel.create({ ...createUserDto, password });
+    } else {
+      return null;
+    }
   }
 
   async findOneByUsername(username: string): Promise<User | undefined> {

@@ -6,8 +6,11 @@ import {
   HttpStatus,
   Get,
   Request,
-  UseGuards 
+  Res,
+  UseGuards, 
+  BadRequestException
 } from '@nestjs/common';
+import { Response } from 'express';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
@@ -25,8 +28,13 @@ export class AuthController {
   }
 
   @Post('signup')
-  async signup(@Body() createUserDto: CreateUserDto) {
+  async signup(@Body() createUserDto: CreateUserDto, @Res({ passthrough: true }) res: Response) {
     const user = await this.authService.signUp(createUserDto);
+    if(user) {
+      res.status(HttpStatus.CREATED);
+    } else {
+      throw new BadRequestException('User not created.');
+    }
   }
 
   @UseGuards(JwtAuthGuard)

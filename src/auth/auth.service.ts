@@ -21,10 +21,10 @@ export class AuthService {
       if(validPass) {
         const result = {
           username: user.username,
-          id: user._id.toString(),
+          id: user['_id'].toString(),
         };
       
-       return result;
+        return result;
       } else {
         throw new UnauthorizedException();
       }
@@ -33,7 +33,6 @@ export class AuthService {
 
   async signIn(user: any) {
     const payload = { sub: user.id, username: user.username };
-    console.log("Payload", payload);
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
@@ -41,6 +40,10 @@ export class AuthService {
 
   async signUp(createUserDto: CreateUserDto) {
     const user = await this.usersService.create(createUserDto);
-    return user;
+    if(user) {
+      return user;
+    }
+
+    return false;
   }
 }
