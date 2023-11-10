@@ -10,14 +10,12 @@ export class GamesService {
   constructor(@InjectModel(Game.name) private readonly gameModel: Model<Game>) {}
 
   async create(createGameDto: CreateGameDto): Promise<Game> {
-    const created = this.gameModel.create(createGameDto);
-    return created;
+    return this.gameModel.create(createGameDto);
   }
 
   async updateByName(updateGameDto: UpdateGameDto): Promise<Game> {
     const filter = { name: updateGameDto.name };
-    const updated = this.gameModel.findOneAndUpdate(filter, updateGameDto);
-    return updated;
+    return this.gameModel.findOneAndUpdate(filter, updateGameDto);
   }
 
   async findAll(): Promise<Game[]> {

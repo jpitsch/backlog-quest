@@ -3,7 +3,6 @@ import { UsersService } from './users.service';
 import { getModelToken } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { encodePassword } from '../utils/bcrypt';
-import { User } from '../users/schemas/user.schema';
 
 class MockUserModel {
   create(createData: CreateUserDto) {}
