@@ -5,6 +5,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 export type BacklogDocument = HydratedDocument<Backlog>;
 
 @ObjectType()
+@Schema()
 class BacklogGame {
   @Field()
   @Prop({ type: Types.ObjectId, ref: 'Games'})
@@ -19,6 +20,8 @@ class BacklogGame {
   timeSpent: number;
 }
 
+export const BacklogGameSchema = SchemaFactory.createForClass(BacklogGame);
+
 @ObjectType()
 @Schema()
 export class Backlog {
@@ -26,12 +29,13 @@ export class Backlog {
   @Prop()
   name: string;
 
-  // TODO: Need to add this after users are part of the system.
-  // @Field()
-  // @Prop({ type: Types.ObjectId, ref: 'User' })
-  // userId: Types.ObjectId;
+  @Field()
+  @Prop({ type: Types.ObjectId, ref: 'User' })
+  userId?: Types.ObjectId;
 
   @Field()
-  @Prop({ type: [BacklogGame] })
-  games: BacklogGame[];
+  @Prop({ type: [BacklogGameSchema] })
+  games: Types.Array<BacklogGame>;
 }
+
+export const BacklogSchema = SchemaFactory.createForClass(Backlog);
