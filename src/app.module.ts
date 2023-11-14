@@ -13,12 +13,12 @@ import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     GamesModule,
+    BacklogModule,
     MongooseModule.forRoot('mongodb://backlogApp:admin2232@localhost/backlog?authSource=admin'),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
     }),
-    BacklogModule,
     AuthModule,
     UsersModule,
   ],

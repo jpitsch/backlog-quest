@@ -1,13 +1,13 @@
 import { HydratedDocument, Types } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType, ID } from '@nestjs/graphql';
 
 export type BacklogDocument = HydratedDocument<Backlog>;
 
 @ObjectType()
 @Schema()
 class BacklogGame {
-  @Field()
+  @Field(type => ID)
   @Prop({ type: Types.ObjectId, ref: 'Games'})
   game: Types.ObjectId;
 
@@ -29,11 +29,11 @@ export class Backlog {
   @Prop()
   name: string;
 
-  @Field()
+  @Field(type => ID)
   @Prop({ type: Types.ObjectId, ref: 'User' })
   userId?: Types.ObjectId;
 
-  @Field()
+  @Field(type => [BacklogGame])
   @Prop({ type: [BacklogGameSchema] })
   games: Types.Array<BacklogGame>;
 }

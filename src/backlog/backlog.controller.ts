@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Get, Param, Delete } from '@nestjs/common';
 import { BacklogService } from './backlog.service';
 import { CreateBacklogDto } from './dto/create-backlog.dto';
-import { AddGameDto } from './dto/add-game.dto';
+import { UpdateBacklogGameDto } from './dto/update-backlog-game.dto';
 
 @Controller('backlog')
 export class BacklogController {
@@ -18,12 +18,12 @@ export class BacklogController {
   }
 
   @Post(':id/game')
-  async addGame(@Param('id') id: string, @Body() addGameDto: AddGameDto) {
-    return this.backlogService.addGame(id, addGameDto);
+  async addGame(@Param('id') id: string, @Body() updateBacklogGameDto: UpdateBacklogGameDto) {
+    return this.backlogService.addGame({ backlogId: id, ...updateBacklogGameDto});
   }
 
   @Delete(':id/game/:gameId')
   async removeGame(@Param('id') id: string, @Param('gameId') gameId: string) {
-    return this.backlogService.removeGame(id, gameId);
+    return this.backlogService.removeGame({ backlogId: id, gameId: gameId});
   }
 }

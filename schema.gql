@@ -18,13 +18,29 @@ type Game {
   xboxId: String
 }
 
+type BacklogGame {
+  game: ID!
+  status: String!
+  timeSpent: Float!
+}
+
+type Backlog {
+  name: String!
+  userId: ID!
+  games: [BacklogGame!]!
+}
+
 type Query {
   games: [Game!]!
+  backlogs: [Backlog!]!
 }
 
 type Mutation {
   createGame(createGameData: CreateGameDto!): Game!
   updateGame(updateGameData: UpdateGameDto!): Game!
+  create(createBacklogData: CreateBacklogDto!): Backlog!
+  addGameToBacklog(input: UpdateBacklogGameDto!): Backlog!
+  removeGameFromBacklog(input: UpdateBacklogGameDto!): Backlog!
 }
 
 input CreateGameDto {
@@ -57,4 +73,14 @@ input UpdateGameDto {
   playstationId: String
   nintendoId: String
   xboxId: String
+}
+
+input CreateBacklogDto {
+  name: String!
+  userId: String!
+}
+
+input UpdateBacklogGameDto {
+  backlogId: String!
+  gameId: String!
 }

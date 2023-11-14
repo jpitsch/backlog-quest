@@ -1,10 +1,10 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class CreateBacklogDto {
+export class UpdateBacklogGameDto {
   @Field()
-  readonly name: string;
-
+  backlogId: string;
+  
   @Field()
-  readonly userId: string;
+  gameId: string;
 }
