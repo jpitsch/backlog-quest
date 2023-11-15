@@ -25,6 +25,7 @@ type BacklogGame {
 }
 
 type Backlog {
+  _id: ID!
   name: String!
   userId: ID!
   games: [BacklogGame!]!

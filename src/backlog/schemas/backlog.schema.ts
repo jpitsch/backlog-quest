@@ -25,6 +25,9 @@ export const BacklogGameSchema = SchemaFactory.createForClass(BacklogGame);
 @ObjectType()
 @Schema()
 export class Backlog {
+  @Field(type => ID)
+  _id: Types.ObjectId;
+
   @Field()
   @Prop()
   name: string;
