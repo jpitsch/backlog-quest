@@ -19,16 +19,16 @@ type Game {
 }
 
 type BacklogGame {
-  game: ID!
-  status: String!
-  timeSpent: Float!
+  _id: ID
+  status: String
+  timeSpent: Float
 }
 
 type Backlog {
   _id: ID!
   name: String!
   userId: ID!
-  games: [BacklogGame!]!
+  games: [BacklogGame!]
 }
 
 type Query {
@@ -40,8 +40,8 @@ type Mutation {
   createGame(createGameData: CreateGameDto!): Game!
   updateGame(updateGameData: UpdateGameDto!): Game!
   create(createBacklogData: CreateBacklogDto!): Backlog!
-  addGameToBacklog(input: UpdateBacklogGameDto!): Backlog!
-  removeGameFromBacklog(input: UpdateBacklogGameDto!): Backlog!
+  addGameToBacklog(updateBacklogGameDto: UpdateBacklogGameDto!): Backlog!
+  removeGameFromBacklog(updateBacklogGameDto: UpdateBacklogGameDto!): Backlog!
 }
 
 input CreateGameDto {

@@ -26,16 +26,18 @@ export class BacklogService {
   }
 
   async addGame(updateBacklogGameDto: UpdateBacklogGameDto) {
-    const backlog =  await this.backlogModel.findOneAndUpdate(
+    return await this.backlogModel.findOneAndUpdate(
       { _id: new Types.ObjectId(updateBacklogGameDto.backlogId) },
       { $push: { games: new Types.ObjectId(updateBacklogGameDto.gameId) } },
+      { returnDocument: 'after' },
     );
   }
 
   async removeGame(updateBacklogGameDto: UpdateBacklogGameDto) {
-    const backlog = await this.backlogModel.findOneAndUpdate(
+    return await this.backlogModel.findOneAndUpdate(
       { _id: new Types.ObjectId(updateBacklogGameDto.backlogId) },
-      { $pull: { games: { _id: new Types.ObjectId(updateBacklogGameDto.gameId) }} }
+      { $pull: { games: { _id: new Types.ObjectId(updateBacklogGameDto.gameId) }} },
+      { returnDocument: 'after' },
     );
   }
 

@@ -7,17 +7,17 @@ export type BacklogDocument = HydratedDocument<Backlog>;
 @ObjectType()
 @Schema()
 class BacklogGame {
-  @Field(type => ID)
-  @Prop({ type: Types.ObjectId, ref: 'Games'})
-  game: Types.ObjectId;
+  @Field(type => ID, { nullable: true })
+  @Prop({ type: Types.ObjectId, ref: 'Games' })
+  _id: Types.ObjectId;
 
-  @Field()
+  @Field({ nullable: true })
   @Prop()
-  status: string;
+  status?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Prop()
-  timeSpent: number;
+  timeSpent?: number;
 }
 
 export const BacklogGameSchema = SchemaFactory.createForClass(BacklogGame);
@@ -36,9 +36,9 @@ export class Backlog {
   @Prop({ type: Types.ObjectId, ref: 'User' })
   userId?: Types.ObjectId;
 
-  @Field(type => [BacklogGame])
+  @Field(type => [BacklogGame], { nullable: true })
   @Prop({ type: [BacklogGameSchema] })
-  games: Types.Array<BacklogGame>;
+  games?: Types.Array<BacklogGame>;
 }
 
 export const BacklogSchema = SchemaFactory.createForClass(Backlog);
