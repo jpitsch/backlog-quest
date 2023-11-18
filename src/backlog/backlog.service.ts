@@ -28,7 +28,11 @@ export class BacklogService {
   async addGame(updateBacklogGameDto: UpdateBacklogGameDto) {
     return await this.backlogModel.findOneAndUpdate(
       { _id: new Types.ObjectId(updateBacklogGameDto.backlogId) },
-      { $push: { 'games':  { 'game': new Types.ObjectId(updateBacklogGameDto.gameId) } } },
+      { $push: { 'games':  { 
+        'game': new Types.ObjectId(updateBacklogGameDto.gameId),
+        'status': 'ADDED',
+        'timeSpent': 0
+      } } },
       { returnDocument: 'after' },
     );
   }
