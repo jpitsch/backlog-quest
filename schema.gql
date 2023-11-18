@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 type Game {
+  _id: ID!
   name: String!
   genre: String!
   platform: String!
@@ -20,6 +21,7 @@ type Game {
 
 type BacklogGame {
   game: Game
+  priority: Float
   status: String
   timeSpent: Float
 }

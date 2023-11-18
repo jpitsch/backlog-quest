@@ -14,6 +14,10 @@ class BacklogGame {
 
   @Field({ nullable: true })
   @Prop()
+  priority?: number;
+
+  @Field({ nullable: true })
+  @Prop()
   status?: string;
 
   @Field({ nullable: true })
@@ -34,7 +38,7 @@ export class Backlog {
   name: string;
 
   @Field(type => ID)
-  @Prop({ type: Types.ObjectId, ref: 'User' })
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User' })
   userId?: Types.ObjectId;
 
   @Field(type => [BacklogGame], { nullable: true })

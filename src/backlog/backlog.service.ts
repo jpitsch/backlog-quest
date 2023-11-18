@@ -31,7 +31,8 @@ export class BacklogService {
       { $push: { 'games':  { 
         'game': new Types.ObjectId(updateBacklogGameDto.gameId),
         'status': 'ADDED',
-        'timeSpent': 0
+        'timeSpent': 0,
+        'priority': null
       } } },
       { returnDocument: 'after' },
     );
