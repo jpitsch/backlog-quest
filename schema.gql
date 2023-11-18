@@ -19,7 +19,7 @@ type Game {
 }
 
 type BacklogGame {
-  _id: ID
+  game: Game
   status: String
   timeSpent: Float
 }

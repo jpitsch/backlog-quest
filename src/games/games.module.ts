@@ -7,7 +7,7 @@ import { GamesResolver } from './games.resolver';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Game.name, schema: GameSchema }]),
+    MongooseModule.forFeature([{ name: 'Game', schema: GameSchema }]),
   ],
   providers: [
     GamesResolver,

@@ -19,10 +19,13 @@ export class BacklogResolver {
   }
 
   @Mutation(returns => Backlog)
-  async addGameToBacklog(@Args('input') updateBacklogGameDto: UpdateBacklogGameDto) {
-    return this.backlogService.addGame(updateBacklogGameDto);
+  async addGameToBacklog(@Args('updateBacklogGameDto') updateBacklogGameDto: UpdateBacklogGameDto) {
+    const backlog = await this.backlogService.addGame(updateBacklogGameDto);
+    return backlog;
   }
 
   @Mutation(returns => Backlog)
-  async removeGameFromBacklog(@Args('input') updateGameDto: UpdateBacklogGameDto) {}
+  async removeGameFromBacklog(@Args('updateBacklogGameDto') updateBacklogGameDto: UpdateBacklogGameDto) {
+    return this.backlogService.removeGame(updateBacklogGameDto);
+  }
 }

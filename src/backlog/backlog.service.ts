@@ -22,13 +22,13 @@ export class BacklogService {
   }
 
   async findAll() {
-    return this.backlogModel.find().exec();
+    return this.backlogModel.find().populate({ path: 'games.game' }).exec();
   }
 
   async addGame(updateBacklogGameDto: UpdateBacklogGameDto) {
     return await this.backlogModel.findOneAndUpdate(
       { _id: new Types.ObjectId(updateBacklogGameDto.backlogId) },
-      { $push: { games: new Types.ObjectId(updateBacklogGameDto.gameId) } },
+      { $push: { 'games':  { 'game': new Types.ObjectId(updateBacklogGameDto.gameId) } } },
       { returnDocument: 'after' },
     );
   }
