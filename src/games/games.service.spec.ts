@@ -1,9 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
-import { ModuleMocker, MockFunctionMetadata } from 'jest-mock';
 import { GamesService } from './games.service';
-
-const moduleMocker = new ModuleMocker(global);
 
 describe('GamesService', () => {
   let service: GamesService;

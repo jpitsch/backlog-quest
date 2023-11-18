@@ -1,7 +1,7 @@
 import { HydratedDocument, Types, Schema as MongooseSchema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Field, ObjectType, ID } from '@nestjs/graphql';
-import { Game } from 'src/games/schemas/game.schema';
+import { Game } from '../../games/schemas/game.schema';
 
 export type BacklogDocument = HydratedDocument<Backlog>;
 
