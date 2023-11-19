@@ -5,12 +5,15 @@ import { GamesModule } from './games/games.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { BacklogModule } from './backlog/backlog.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+
 
 @Module({
   imports: [
     GamesModule,
+    BacklogModule,
     MongooseModule.forRoot('mongodb://backlogApp:admin2232@localhost/backlog?authSource=admin'),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

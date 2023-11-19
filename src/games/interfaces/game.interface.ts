@@ -1,6 +1,7 @@
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 export interface Game extends Document {
+  readonly _id: Types.ObjectId;
   readonly name: string;
   readonly genre: string;
   readonly platform: string;
